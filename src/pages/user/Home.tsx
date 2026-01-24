@@ -8,10 +8,16 @@ import SlideBanner from '../../components/SlideBanner';
 const Home: React.FC = () => {
     const [loading] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+    const [searchTerm, setSearchTerm] = useState('');
 
-    const filteredProducts = selectedCategory
-        ? mockProducts.filter(p => p.categoryId === selectedCategory)
-        : mockProducts;
+    const filteredProducts = mockProducts.filter(p => {
+        const matchesCategory = selectedCategory ? p.categoryId === selectedCategory : true;
+        const matchesSearch = searchTerm
+            ? p.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+              p.description.toLowerCase().includes(searchTerm.toLowerCase())
+            : true;
+        return matchesCategory && matchesSearch;
+    });
 
     return (
         <div className="min-h-screen bg-gray-50">
@@ -62,10 +68,16 @@ const Home: React.FC = () => {
                                 <input
                                     type="text"
                                     placeholder="Search for products..."
+                                    value={searchTerm}
+                                    onChange={(e) => setSearchTerm(e.target.value)}
                                     className="w-full px-4 sm:px-6 py-3 sm:py-4 rounded-full text-gray-800 focus:outline-none focus:ring-4 focus:ring-primary-300 text-sm sm:text-base"
                                 />
-                                <button className="absolute right-2 top-1/2 -translate-y-1/2 bg-primary-700 hover:bg-primary-800 text-white px-4 sm:px-6 py-2 rounded-full transition-colors text-sm sm:text-base">
-                                    Search
+                                <button
+                                    className="absolute right-2 top-1/2 -translate-y-1/2 bg-primary-700 hover:bg-primary-800 text-white px-4 sm:px-6 py-2 rounded-full transition-colors text-sm sm:text-base"
+                                    type="button"
+                                    onClick={() => setSearchTerm('')}
+                                >
+                                    {searchTerm ? 'Clear' : 'Search'}
                                 </button>
                             </div>
                         </div>
