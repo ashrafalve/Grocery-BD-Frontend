@@ -13,6 +13,13 @@ const Checkout: React.FC = () => {
     const cartItems = getCartWithProducts();
     const total = getTotal();
 
+    // Redirect to login if not authenticated
+    React.useEffect(() => {
+        if (!user) {
+            navigate('/login');
+        }
+    }, [user, navigate]);
+
     const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>('cod');
     const [bkashNumber, setBkashNumber] = useState('');
     const [transactionId, setTransactionId] = useState('');
@@ -59,7 +66,9 @@ const Checkout: React.FC = () => {
     return (
         <div className="min-h-screen bg-gray-50 py-12">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h1 className="text-3xl font-bold text-gray-800 mb-8">Checkout 🛍️</h1>
+                <h1 className="text-3xl font-bold text-gray-800 mb-8 flex items-center gap-2">Checkout <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                </svg></h1>
 
                 <form onSubmit={handlePlaceOrder}>
                     <div className="grid lg:grid-cols-3 gap-8">
@@ -131,7 +140,9 @@ const Checkout: React.FC = () => {
                                             <div className="font-semibold">Cash on Delivery</div>
                                             <div className="text-sm text-gray-500">Pay when you receive</div>
                                         </div>
-                                        <span className="text-2xl">💵</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+                                        </svg>
                                     </label>
 
                                     {/* bKash */}
@@ -148,7 +159,9 @@ const Checkout: React.FC = () => {
                                             <div className="font-semibold">bKash</div>
                                             <div className="text-sm text-gray-500">Mobile payment</div>
                                         </div>
-                                        <span className="text-2xl">📱</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                                        </svg>
                                     </label>
                                 </div>
 

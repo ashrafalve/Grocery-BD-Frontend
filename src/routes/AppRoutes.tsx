@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import ProtectedRoute from '../layouts/ProtectedRoute';
+import PublicLayout from '../layouts/PublicLayout';
 
 // Auth Pages
 import Login from '../pages/auth/Login';
@@ -16,6 +17,8 @@ import OrderSuccess from '../pages/user/OrderSuccess';
 import Orders from '../pages/user/Orders';
 import OrderTracking from '../pages/user/OrderTracking';
 import Profile from '../pages/user/Profile';
+import Wishlist from '../pages/user/Wishlist';
+import AllProducts from '../pages/user/AllProducts';
 
 // Delivery Pages
 import DeliveryDashboard from '../pages/delivery/DeliveryDashboard';
@@ -32,7 +35,7 @@ const AppRoutes: React.FC = () => {
     const { isAuthenticated, user } = useAuth();
 
     const getDefaultRoute = () => {
-        if (!isAuthenticated || !user) return '/login';
+        if (!isAuthenticated || !user) return '/';
 
         switch (user.role) {
             case 'admin':
@@ -48,34 +51,44 @@ const AppRoutes: React.FC = () => {
         <BrowserRouter>
             <Routes>
                 {/* Public Routes */}
+                <Route path="/" element={
+                    <PublicLayout>
+                        <Home />
+                    </PublicLayout>
+                } />
                 <Route path="/login" element={!isAuthenticated ? <Login /> : <Navigate to={getDefaultRoute()} />} />
                 <Route path="/register" element={!isAuthenticated ? <Register /> : <Navigate to={getDefaultRoute()} />} />
 
-                {/* User Routes */}
-                <Route path="/" element={
-                    <ProtectedRoute allowedRoles={['user']}>
-                        <Home />
-                    </ProtectedRoute>
-                } />
+                {/* Public User Routes */}
                 <Route path="/product/:id" element={
-                    <ProtectedRoute allowedRoles={['user']}>
+                    <PublicLayout>
                         <ProductDetail />
-                    </ProtectedRoute>
+                    </PublicLayout>
                 } />
                 <Route path="/category/:id" element={
-                    <ProtectedRoute allowedRoles={['user']}>
+                    <PublicLayout>
                         <Home />
-                    </ProtectedRoute>
+                    </PublicLayout>
+                } />
+                <Route path="/products" element={
+                    <PublicLayout>
+                        <AllProducts />
+                    </PublicLayout>
                 } />
                 <Route path="/cart" element={
-                    <ProtectedRoute allowedRoles={['user']}>
+                    <PublicLayout>
                         <Cart />
-                    </ProtectedRoute>
+                    </PublicLayout>
+                } />
+                <Route path="/wishlist" element={
+                    <PublicLayout>
+                        <Wishlist />
+                    </PublicLayout>
                 } />
                 <Route path="/checkout" element={
-                    <ProtectedRoute allowedRoles={['user']}>
+                    <PublicLayout>
                         <Checkout />
-                    </ProtectedRoute>
+                    </PublicLayout>
                 } />
                 <Route path="/order-success/:orderId" element={
                     <ProtectedRoute allowedRoles={['user']}>

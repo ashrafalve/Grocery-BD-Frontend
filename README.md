@@ -32,26 +32,26 @@ A production-ready, frontend-only grocery delivery web application built with Re
 - Category management
 
 ### Technical Features
-- **Frontend Only** - No backend required
-- **Mock Data** - Structured for easy Firebase integration later
-- **Live Map Simulation** - Using Leaflet.js and OpenStreetMap
-- **Role-Based Routing** - Protected routes for each user type
-- **Responsive Design** - Mobile-first approach
-- **Modern UI** - Beautiful Bangladesh-themed design
-- **Toast Notifications** - User feedback system
-- **Context API** - State management with React Context
-- **TypeScript** - Full type safety
+- Frontend Only - No backend required
+- Mock Data - Structured for easy Firebase integration later
+- Live Map Simulation - Using Leaflet.js and OpenStreetMap
+- Role-Based Routing - Protected routes for each user type
+- Responsive Design - Mobile-first approach
+- Modern UI - Beautiful Bangladesh-themed design
+- Toast Notifications - User feedback system
+- Context API - State management with React Context
+- TypeScript - Full type safe
 
 ## 📋 Tech Stack
 
-- **React 18** - UI library
-- **TypeScript** - Type safety
-- **Vite** - Build tool
-- **React Router DOM** - Routing
-- **Tailwind CSS** - Styling
-- **Leaflet.js** - Maps (OpenStreetMap)
-- **React Leaflet** - React wrapper for Leaflet
-- **Context API** - State management
+- React 18 - UI library
+- TypeScript - Type safety
+- Vite - Build tool
+- React Router DOM - Routing
+- Tailwind CSS - Styling
+- Leaflet.js - Maps (OpenStreetMap)
+- React Leaflet - React wrapper for Leaflet
+- Context API - State management
 
 ## 🛠️ Installation
 
@@ -145,8 +145,8 @@ src/
 
 The app uses React Context API for state management:
 
-- **AuthContext** - User authentication and session management
-- **CartContext** - Shopping cart state
+- AuthContext - User authentication and session management
+- CartContext - Shopping cart state
 
 All state is persisted in `localStorage` for session persistence.
 
@@ -225,10 +225,6 @@ This is a **frontend-only** demo:
 
 This project is for demonstration purposes.
 
-## 👨‍💻 Development
-
-Built with ❤️ for Bangladesh's grocery delivery needs.
-
 ---
 
-**Note**: This is a complete UI implementation. For production use, integrate with a real backend (Firebase, Node.js, etc.).
+Note: This is a complete UI implementation. For production use, integrate with a real backend (Firebase, Node.js, etc.).

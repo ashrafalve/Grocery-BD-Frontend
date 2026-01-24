@@ -21,7 +21,7 @@ const Orders: React.FC = () => {
                 <h1 className="text-3xl font-bold text-gray-800 mb-8">My Orders 📦</h1>
 
                 {/* Filter Tabs */}
-                <div className="flex gap-2 mb-8 overflow-x-auto">
+                <div className="flex gap-2 mb-8 overflow-x-auto scrollbar-hide">
                     {['all', 'pending', 'confirmed', 'on-the-way', 'delivered'].map(status => (
                         <button
                             key={status}
